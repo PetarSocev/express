@@ -117,6 +117,7 @@ router.post("/signin", function (req, res, next) {
 
     if (!compareResult) {
       res.render("users/signin", { result: { invalid_credentials: true } });
+      return;
     }
 
     const token = getUserJwt(dbResult.id, dbResult.email, dbResult.name, dbResult.role);

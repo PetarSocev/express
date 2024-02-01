@@ -1,0 +1,20 @@
+<div class="p-2">
+    {{#if result.display_form}}
+    <form action="/competitions/add" method="post" class="flex flex-col gap-2">
+        <div class="pb-2 flex flex-col">
+            <label>Naziv</label>
+            <input type="text" name="name" class="bg-neutral" required="" minlenght="3" maxlength="50" />
+        </div>
+
+        <div class="pb-2 flex flex-col">
+            <label>Opis</label>
+            <textarea name="description" class="bg-neutral" rows="10" required="" minlength="3"
+                maxlength="50"></textarea>
+        </div>
+        <div class="pb-2 flex flex-col">
+            <label>Rok prijave</label>
+            <input type="datetime-local" name="apply_till" class="bg-neutral" required=""  />
+        </div>
+    </form>
+    {{/if}}
+</div>
