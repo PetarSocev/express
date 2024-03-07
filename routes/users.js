@@ -25,6 +25,7 @@ router.post("/data", authRequired, function (req, res, next) {
     res.render("users/data", { result: { validation_error: true, display_form: true } });
     return;
   }
+
   const newName = req.body.name;
   const newEmail = req.body.email;
   const newPassword = req.body.password;
@@ -41,11 +42,13 @@ router.post("/data", authRequired, function (req, res, next) {
     emailChanged = true;
     dataChanged.push(newEmail);
   }
+
   let nameChanged = false;
   if (newName !== currentUser.name) {
     nameChanged = true;
     dataChanged.push(newName);
   }
+
   let passwordChanged = false;
   let passwordHash;
   if (newPassword && newPassword.length > 0) {
@@ -59,7 +62,7 @@ router.post("/data", authRequired, function (req, res, next) {
     return;
   }
 
-  let query = "UPDATE users SET ";
+  let query = "UPDATE users SET";
   if (emailChanged) query += " email = ?,";
   if (nameChanged) query += " name = ?,";
   if (passwordChanged) query += " password = ?,";
@@ -68,14 +71,12 @@ router.post("/data", authRequired, function (req, res, next) {
   dataChanged.push(currentUser.email);
 
   const stmt = db.prepare(query);
-
   const updateResult = stmt.run(dataChanged);
 
   if (updateResult.changes && updateResult.changes === 1) {
     res.render("users/data", { result: { success: true } });
   } else {
     res.render("users/data", { result: { database_error: true } });
-
   }
 });
 
@@ -158,7 +159,7 @@ router.post("/signup", function (req, res, next) {
 
   const passwordHash = bcrypt.hashSync(req.body.password, 10);
   const stmt2 = db.prepare("INSERT INTO users (email, password, name, signed_at, role) VALUES (?, ?, ?, ?, ?);");
-  const insertResult = stmt2.run(req.body.email, passwordHash, req.body.name, Date.now(), "user");
+  const insertResult = stmt2.run(req.body.email, passwordHash, req.body.name, new Date().toISOString(), "user");
 
   if (insertResult.changes && insertResult.changes === 1) {
     res.render("users/signup", { result: { success: true } });

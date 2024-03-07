@@ -1,20 +1,19 @@
 <div class="p-2">
     {{#if result.display_form}}
-    <form method="post" action="/users/data" class"flex flex-col gap-2">
+    <form method="post" action="/users/data" class="flex flex-col gap-2">
         <div class="flex flex-col">
-            <label>Ime i Prezime</label>
-            <input type="text" name="name" value="{{user.name}}" class"bg-neutral">
+            <label>Ime i prezime</label>
+            <input type="text" name="name" value="{{user.name}}" class="bg-neutral" />
         </div>
         <div class="flex flex-col">
-            <label>E-Mail adresa</label>
-            <input type="email" name="email" value="{{user.email}}" class"bg-neutral">
+            <label>E-mail adresa</label>
+            <input type="email" name="email" value="{{user.email}}" class="bg-neutral" />
         </div>
         <div class="flex flex-col">
             <label>Zaporka</label>
-            <input type="password" name="password" class"bg-neutral">
+            <input type="password" name="password" class="bg-neutral" />
         </div>
-     {{> form_buttons}}
-
+        {{> form_buttons }}
     </form>
     {{/if}}
 
@@ -38,19 +37,14 @@
                 <p>
                     Uspješno ste promijenili podatke, sada ćemo vas odjaviti!
                 </p>
-                <div class="card-actions justify-end">
-                </div>
+                <div class="card-actions justify-end"></div>
             </div>
         </div>
         <script>
             setTimeout(() => {
                 window.location = "/users/signout";
-
             }, 3000);
         </script>
     </div>
     {{/if}}
-
-
-
 </div>
