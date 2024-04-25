@@ -13,7 +13,9 @@
                     <th>Opis</th>
                     <th>Rok prijave</th>
                     <th>Autor</th>
+                    {{#if user.is_admin}}
                     <th>Mogućnosti</th>
+                    {{/if}}
                 </tr>
             </thead>
             <!-- body -->
@@ -32,17 +34,22 @@
                         <span x-text="new Date('{{this.apply_till}}').toLocaleString()"></span>
                     </td>
                     <td>{{this.author}}</td>
-                        {{#if ../user.is_admin}}
+                    {{#if ../user.is_admin}}
                     <td class="flex flex-wrap gap-2">
                         <a href="/competitions/edit/{{this.id}}" class="btn btn-accent btn-xs">Uredi</a>
                         <a href="/competitions/delete/{{this.id}}" class="btn btn-error btn-xs">Briši</a>
-                            {{/if}}
+                        <a href="/competitions/score_input/{{this.id}}" class="btn btn-accent btn-xs">Prikaz prijava</a>
+                        <a href="/competitions/leaderboard/{{this.id}}" class="btn btn-accent btn-xs">Ljestivica</a>
+                        <a href="/competitions/logs/{{this.id}}" class="btn btn-accent btn-xs">Update Logs</a>
 
-                            <td class="flex-none">
-                                <a href="/competitions/prijava/{{this.id}}" class="btn btn-primary">Prijava</a>
 
-                            </td>
-
+                    </td>
+                    {{/if}}
+                    <td class="flex-none">
+                        <a href="/competitions/login/{{this.id}}" class="btn btn-primary">Prijavi</a>
+                    </td>
+                       <td class="flex-none">
+                        <a href="/competitions/logsview/{{this.id}}" class="btn btn-primary">Pogledaj promjene</a>
                     </td>
                 </tr>
                 {{/each}}

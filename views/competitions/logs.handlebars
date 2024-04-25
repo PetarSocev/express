@@ -1,0 +1,46 @@
+<div class="p-2">
+    <div class="overflow-x-auto">
+        <table class="table">
+            <!-- head -->
+            <thead>
+                <tr>
+                    <th>Upišite promjene</th>
+                </tr>
+            </thead>
+            <!-- body -->
+            <tbody>
+                <tr>
+                    <td>
+                        <form method="post" action="/competitions/logs" class="flex flex-col gap-2">
+                            <div class="flex flex-col">
+                                <label>Promjene</label>
+                                <input id="log" type="text" name="log" class="bg-neutral"/>
+                                {{> form_buttons }}
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    {{#if result.database_error}}
+    {{> database_error }}
+    {{/if}}
+
+    {{#if result.success}}
+    <div class="mt-4">
+        <div class="card w-96 bg-primary text-primary-content">
+            <div class="card-body">
+                <h2 class="card-title">Uspjeh!</h2>
+                <p>
+                    Uspješno ste upisali promjene!
+                </p>
+                <div class="card-actions justify-end">
+                    <a class="btn" href="/competitions">Nastavi na pregled natjecanja</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{/if}}
+
+</div>

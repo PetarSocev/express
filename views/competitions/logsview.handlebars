@@ -1,0 +1,19 @@
+<div class="p-2">
+    <div class="overflow-x-auto">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Promjena</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                {{#each result.items}}
+                <tr>
+                    <td>{{this.log}}</td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
+</div>
